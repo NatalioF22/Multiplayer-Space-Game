@@ -12,12 +12,12 @@ class Game:
         self.WIDTH, self.HEIGHT = 900,500
         #make the main surface aka the winodw
         self.WINDOW = pygame.display.set_mode((self.WIDTH,self.HEIGHT))
-        pygame.display.set_caption("First Game")
+        pygame.display.set_caption("SPACE MULTIPLAYER GAME")
 
         self.YELLOW_HIT = pygame.USEREVENT+1
         self.RED_HIT = pygame.USEREVENT+2
 
-        self.HEALTH_FONT = pygame.font.SysFont('comicsans',40)
+        self.HEALTH_FONT = pygame.font.SysFont('comicSans',40)
         self.WINNER_FONT = pygame.font.SysFont('comicSans',100)
         self.WHITE = (255,255,255)
         self.BLACK = (0, 0, 0)
@@ -56,7 +56,7 @@ class Game:
         #resize the yellow spaceship
         self.RED_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(self.RED_SPACESHIP_IMG,(self.SPACESHIP_WIDHT,self.SPACESHIP_HEIGHT)),270)
 
-        self.SPACE = pygame.transform.scale(pygame.image.load(os.path.join("Assets",'space.png')),(self.WIDTH,self.HEIGHT))
+        self.SPACE = pygame.transform.scale(pygame.image.load(os.path.join("Assets",'space.jpeg')),(self.WIDTH,self.HEIGHT))
     def draw_winner(self,text):
         draw_text = self.WINNER_FONT.render(text,1,self.WHITE)
         self.WINDOW.blit(draw_text,(self.WIDTH/2 - draw_text.get_width() /2,self.HEIGHT/2 - draw_text.get_height()/2))
@@ -67,8 +67,8 @@ class Game:
         # set the background of the winodw to white
         self.WINDOW.blit(self.SPACE,(0,0))
         pygame.draw.rect(self.WINDOW, self.BLACK, self.BORDER)
-        self.red_health_text = self.HEALTH_FONT.render("Health: " + str(red_health),1,self.WHITE)
-        self.yellow_health_text = self.HEALTH_FONT.render("Health: " + str(yellow_health), 1, self.WHITE)
+        self.red_health_text = self.HEALTH_FONT.render("Health: " + str(red_health),1,self.PURPLE)
+        self.yellow_health_text = self.HEALTH_FONT.render("Health: " + str(yellow_health), 1, self.PURPLE)
         self.WINDOW.blit(self.red_health_text,(self.WIDTH-self.red_health_text.get_width()-10,10))
         self.WINDOW.blit(self.yellow_health_text, (10, 10))
 
@@ -177,9 +177,9 @@ class Game:
                     yellow_health-=1
             winner_text = ""
             if red_health<=0:
-                winner_text = "Yellow wINS"
+                winner_text = "Yellow Wins"
             if yellow_health<=0:
-                winner_text = "Red wINS"
+                winner_text = "Red Wins"
             if winner_text != "":
                 self.draw_winner(winner_text)
                 break
